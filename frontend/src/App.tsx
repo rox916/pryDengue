@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import Login from './login/Login';
+import Login from './login/Login';
 import Register from './login/Register';
 import Dashboard from './login/Dashboard';
 import AdminSetup from './login/AdminSetup';
@@ -39,13 +39,17 @@ const App: React.FC = () => {
       return <AdminSetup onSetupComplete={handleAdminSetup} />;
     }
 
-    switch (currentView) {
+        switch (currentView) {
       case 'admin-setup':
         return <AdminSetup onSetupComplete={handleAdminSetup} />;
+      case 'login':
+        return <Login />;
       case 'register':
         return <Register />;
       case 'dashboard':
         return <Dashboard />;
+      default:
+        return <Login />;
     }
   };
 
