@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.app-nav {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.app-nav button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.app-nav button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.app-main {
+  padding: 20px;
+}
