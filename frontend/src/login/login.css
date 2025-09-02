@@ -1,26 +1,126 @@
+/* Contenedor principal */
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  max-width: 420px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
 }
 
-.camera-container {
-  margin: 20px 0;
-  border: 2px solid #ddd;
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Cámara */
+.camera-wrapper {
+  position: relative;
+  border: 2px solid #e0e7ff;
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
-.loading {
-  margin: 10px 0;
-  color: #007bff;
-}
-
-.message {
-  margin: 10px 0;
-  padding: 10px;
+.face-detected-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #16a34a;
+  color: white;
+  padding: 2px 6px;
   border-radius: 4px;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
+  font-size: 0.75rem;
+}
+
+/* Botón de login */
+.login-button {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-button:hover {
+  background: #4338ca;
+}
+
+.login-button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.spinner-small {
+  border: 3px solid #ddd;
+  border-top: 3px solid #4f46e5;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  margin-left: 0.75rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mensajes */
+.message-box {
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.message-box.success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.message-box.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Footer */
+.login-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6b7280;
 }

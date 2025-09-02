@@ -15,9 +15,9 @@ interface ChartsProps {
 
 const Charts: React.FC<ChartsProps> = ({ metrics }) => {
   return (
-    <div className="space-y-8">
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-        <h4 className="text-lg font-semibold text-gray-800 mb-4">Precisión del Modelo</h4>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div style={{ backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '0.5rem', border: '1px solid #f3f4f6' }}>
+        <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#1f2937', marginBottom: '1rem' }}>Precisión del Modelo</h4>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={[{name: 'Precisión', value: metrics.accuracy * 100}]}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -29,8 +29,8 @@ const Charts: React.FC<ChartsProps> = ({ metrics }) => {
         </ResponsiveContainer>
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-        <h4 className="text-lg font-semibold text-gray-800 mb-4">Tendencia de Registro de Usuarios</h4>
+      <div style={{ backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '0.5rem', border: '1px solid #f3f4f6' }}>
+        <h4 style={{ fontSize: '1.125rem', fontWeight: 600, color: '#1f2937', marginBottom: '1rem' }}>Tendencia de Registro de Usuarios</h4>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={metrics.users_by_day}>
             <CartesianGrid strokeDasharray="3 3" />
