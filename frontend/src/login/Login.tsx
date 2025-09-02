@@ -1,9 +1,13 @@
 import React, { useState, useRef } from 'react';
 import FaceCamera from './FaceCamera';
-import { login } from './api';
+import { login } from '../api';
 import './login.css';
 
-const Login: React.FC = () => {
+interface LoginProps {
+  onFaceValidated: () => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onFaceValidated }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [faceDetected, setFaceDetected] = useState(false);
@@ -13,15 +17,12 @@ const Login: React.FC = () => {
     embeddingRef.current = embedding;
     setFaceDetected(true);
     console.log('Face detected, embedding length:', embedding.length);
+    // Llama a la función de validación aquí
+    handleLogin(embedding);
   };
 
-  const handleLogin = async () => {
-    if (!embeddingRef.current) {
-      setMessage('Por favor capture su rostro primero');
-      return;
-    }
-
-    if (embeddingRef.current.length !== 128) {
+  const handleLogin = async (embedding: number[]) => {
+    if (embedding.length !== 128) {
       setMessage('Error en la captura facial. Por favor intente nuevamente');
       return;
     }
@@ -30,12 +31,15 @@ const Login: React.FC = () => {
     setMessage('Verificando...');
 
     try {
-      const response = await login(embeddingRef.current);
+      const response = await login(embedding);
       setMessage(`¡Bienvenido ${response.nombre}!`);
       localStorage.setItem('token', response.token);
 
       const speech = new SpeechSynthesisUtterance(`Hola ${response.nombre}`);
       window.speechSynthesis.speak(speech);
+
+      // Llama a la función del componente padre para cambiar la vista
+      onFaceValidated();
     } catch (error: any) {
       console.error('Login error:', error);
       const errorMessage =
@@ -52,7 +56,7 @@ const Login: React.FC = () => {
       <div className="login-header">
         <h1 className="login-title">Inicio de Sesión Facial</h1>
         <p className="login-subtitle">
-          Mire a la cámara y presione el botón para autenticarse
+          Mire a la cámara para autenticarse
         </p>
       </div>
 
@@ -64,14 +68,6 @@ const Login: React.FC = () => {
           </div>
         )}
       </div>
-
-      <button
-        onClick={handleLogin}
-        disabled={isLoading || !faceDetected}
-        className="login-button"
-      >
-        {isLoading ? 'Verificando...' : 'Iniciar Sesión'}
-      </button>
 
       {isLoading && (
         <div className="loading-container">

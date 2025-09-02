@@ -14,6 +14,7 @@ const FaceCamera: React.FC<FaceCameraProps> = ({ onFaceDetected, captureMode = f
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string>('');
+  const [hasSentEmbedding, setHasSentEmbedding] = useState(false); // Nuevo estado
   const faceMeshRef = useRef<FaceMesh | null>(null);
   const cameraRef = useRef<Camera | null>(null);
 
@@ -55,10 +56,11 @@ const FaceCamera: React.FC<FaceCameraProps> = ({ onFaceDetected, captureMode = f
                   lineWidth: 1 
                 });
 
-                if (captureMode) {
+                if (captureMode && !hasSentEmbedding) { // Agrega la validación del nuevo estado
                   const embedding = extractEmbedding(landmarks);
                   if (embedding.length === 128 && isValidEmbedding(embedding)) {
                     onFaceDetected(embedding);
+                    setHasSentEmbedding(true); // Actualiza el estado para no volver a enviar
                   }
                 }
               }
@@ -118,7 +120,7 @@ const FaceCamera: React.FC<FaceCameraProps> = ({ onFaceDetected, captureMode = f
         }
       }
     };
-  }, [onFaceDetected, captureMode]);
+  }, [onFaceDetected, captureMode, hasSentEmbedding]);
 
   const isValidEmbedding = (embedding: number[]): boolean => {
     return embedding.every(val => !isNaN(val) && isFinite(val));
