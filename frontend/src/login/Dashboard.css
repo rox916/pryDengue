@@ -1,13 +1,95 @@
+/* Contenedor principal del dashboard */
 .dashboard-container {
-  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  padding: 1.5rem;
 }
 
-.dashboard-container h1 {
-  color: #333;
-  margin-bottom: 20px;
+/* Encabezado */
+.dashboard-header {
+  margin-bottom: 1.5rem;
 }
 
-.dashboard-container h2 {
-  color: #666;
-  margin-bottom: 30px;
+.dashboard-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.dashboard-greeting {
+  color: #4b5563;
+  margin-top: 0.5rem;
+}
+
+/* Contenedor de las métricas */
+.metrics-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tarjetas de métricas individuales */
+.metric-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-width: 1px;
+}
+
+.metric-title {
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* Estilos de color para cada tarjeta */
+.blue-card {
+  background-color: #eff6ff;
+  border-color: #dbeafe;
+}
+
+.blue-card .metric-title {
+  color: #1e40af;
+}
+
+.blue-card .metric-value {
+  color: #2563eb;
+}
+
+.green-card {
+  background-color: #f0fdf4;
+  border-color: #dcfce7;
+}
+
+.green-card .metric-title {
+  color: #065f46;
+}
+
+.green-card .metric-value {
+  color: #10b981;
+}
+
+.purple-card {
+  background-color: #f5f3ff;
+  border-color: #ede9fe;
+}
+
+.purple-card .metric-title {
+  color: #4c1d95;
+}
+
+.purple-card .metric-value {
+  color: #7c3aed;
 }
